@@ -1,0 +1,30 @@
+{
+  "name": "colorBar",
+  "version": "0.0.0",
+  "description": "colorfull ajax loading bar",
+  "main": " ",
+  "scripts": {
+    "test": " "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/LoeiFy/colorBar.git"
+  },
+  "keywords": [
+    "ajax",
+    "loading",
+    "bar",
+    "colorfull"
+  ],
+  "author": "Loeify",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LoeiFy/colorBar/issues"
+  },
+  "homepage": "https://github.com/LoeiFy/colorBar",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-jshint": "^1.11.2"
+  }
+}
