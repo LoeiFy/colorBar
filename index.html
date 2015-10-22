@@ -6,10 +6,35 @@
 <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
 <title>colorBar</title>
 <meta name="author" content="LoeiFy">
+<style>
+body {
+    margin: 0;
+}
+@-webkit-keyframes loader {
+    100% { background-position: 1298px 0 }
+}
+@-webkit-keyframes loader2 {
+    100% { background-position: 100% 0 }
+}
+.loader {
+    width: 100%;
+    position: absolute;
+    height: 4px;
+    background-image: -webkit-linear-gradient(180deg, #37cca2 0%, #46deb6 17%, #feed00 38%, #fbf27a 59%, #f24141 79%, #ffafaf 100%);
+    background-image: -moz-linear-gradient(right, #37cca2 0%, #46deb6 17%, #feed00 38%, #fbf27a 59%, #f24141 79%, #ffafaf 100%);
+    background-image: linear-gradient(to left, #37cca2 0%, #46deb6 17%, #feed00 38%, #fbf27a 59%, #f24141 79%, #ffafaf 100%);
+}
+.loader.load {
+    -webkit-animation: loader 3s infinite linear;
+}
+.loader.load1 {
+    -webkit-animation: loader2 3s infinite linear;
+}
+</style>
 <script src="colorBar.js"></script>
 </head>
 
 <body>
-<div class="loader"></div>
+<div class="loader load"></div>
 </body>
 </html>
