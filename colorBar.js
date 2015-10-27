@@ -22,6 +22,24 @@
             }
         }
 
+        if (selector) {
+            var element = document.querySelector(selector);
+            while (element.firstChild) {
+                element.removeChild(element.firstChild)
+            }
+
+            this.colorBar = document.createElement('div');
+            this.colorBar.class = 'colorBar';
+
+            this.colorBar.css = function(style) {
+                for (var property in style) {
+                    this.style[property] = style[property]
+                }
+            }({
+                height: this.option.height
+            })
+        }
+
     }
 
 })(window)
