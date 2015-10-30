@@ -32,18 +32,11 @@ function colorBar(selector, option) {
 
         var cssStyle = this.option.colors[0] +' 0%,'+ this.option.colors[1] +' 17%,'+ this.option.colors[2] +' 38%,'+ this.option.colors[3] +' 59%,'+ this.option.colors[4] +' 79%,'+ this.option.colors[5] +' 100%';
 
-        this.colorBarElement.css = function(style) {
-            for (var property in style) {
-                this.style[property] = style[property]
-            }
-        }
-
-        this.colorBarElement.css({
-            'height': this.option.height,
-            'background-image': '-webkit-linear-gradient(left, '+ cssStyle +')',
-            'background-image': '-moz-linear-gradient(left, '+ cssStyle +')',
-            'background-image': 'linear-gradient(to right, '+ cssStyle +')'
-        })
+        this.colorBarElement.style.cssText = 
+            'height:'+ this.option.height +';'+
+            'background-image:-webkit-linear-gradient(left, '+ cssStyle +');'+
+            'background-image:-moz-linear-gradient(left, '+ cssStyle +');'+
+            'background-image:linear-gradient(to right, '+ cssStyle +');';
 
         element.appendChild(this.colorBarElement)
     }
