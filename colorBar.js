@@ -6,40 +6,46 @@
  * http://lorem.in/ | under MIT license
  */
 
-;(function(window, undefined) {
+function colorBar(selector, option) {
 
-    function colorBar(selector, option) {
-
-        this.option = {
-            height: '3px',
-            duration: '2s',
-            colors: ['#37cca2', '#46deb6', '#feed00', '#fbf27a', '#f24141', '#37cca2']
-        }
-
-        if (option && typeof option === 'object') {
-            for (var key in option) {
-                this.option[key] = option[key]
-            }
-        }
-
-        if (selector) {
-            var element = document.querySelector(selector);
-            while (element.firstChild) {
-                element.removeChild(element.firstChild)
-            }
-
-            this.colorBar = document.createElement('div');
-            this.colorBar.class = 'colorBar';
-
-            this.colorBar.css = function(style) {
-                for (var property in style) {
-                    this.style[property] = style[property]
-                }
-            }({
-                height: this.option.height
-            })
-        }
-
+    this.option = {
+        id: 'colorBar',
+        height: '3px',
+        duration: '2s',
+        colors: ['#37cca2', '#46deb6', '#feed00', '#fbf27a', '#f24141', '#37cca2']
     }
 
-})(window)
+    if (option && typeof option === 'object') {
+        for (var key in option) {
+            this.option[key] = option[key]
+        }
+    }
+
+    if (selector) {
+        var element = document.querySelector(selector);
+        while (element.firstChild) {
+            element.removeChild(element.firstChild)
+        }
+
+        this.colorBarElement = document.createElement('div');
+        this.colorBarElement.id = this.option.id;
+
+        var cssStyle = this.option.colors[0] +' 0%,'+ this.option.colors[1] +' 17%,'+ this.option.colors[2] +' 38%,'+ this.option.colors[3] +' 59%,'+ this.option.colors[4] +' 79%,'+ this.option.colors[5] +' 100%';
+
+        this.colorBarElement.css = function(style) {
+            for (var property in style) {
+                this.style[property] = style[property]
+            }
+        }
+
+        this.colorBarElement.css({
+            'height': this.option.height,
+            'background-image': '-webkit-linear-gradient(left, '+ cssStyle +')',
+            'background-image': '-moz-linear-gradient(left, '+ cssStyle +')',
+            'background-image': 'linear-gradient(to right, '+ cssStyle +')'
+        })
+
+        element.appendChild(this.colorBarElement)
+    }
+
+}
