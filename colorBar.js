@@ -45,9 +45,15 @@ function colorBar(selector, option) {
 
 colorBar.prototype.loading = function() {
 
+    var oldStyle = document.getElementById('colorBarStyle');
+    if (oldStyle) {
+        document.getElementsByTagName('head')[0].removeChild(oldStyle)
+    }
+
     var style = document.createElement('style'),
         w = window.innerWidth;
 
+    style.id = 'colorBarStyle';
     style.innerHTML = 
         '@-webkit-keyframes loader'+ w +'{ 100% { background-position:'+ w +'px 0 } }'+
         '@-moz-keyframes loader'+ w +'{ 100% { background-position:'+ w +'px 0 } }'+
