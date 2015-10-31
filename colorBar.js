@@ -42,3 +42,29 @@ function colorBar(selector, option) {
     }
 
 }
+
+colorBar.prototype.loading = function() {
+
+    var style = document.createElement('style'),
+        w = window.innerWidth;
+
+    style.innerHTML = 
+        '@-webkit-keyframes loader'+ w +'{ 100% { background-position:'+ w +'px 0 } }'+
+        '@-moz-keyframes loader'+ w +'{ 100% { background-position:'+ w +'px 0 } }'+
+        '@keyframes loader'+ w +'{ 100% { background-position:'+ w +'px 0 } }'+
+
+        '.loader'+ w +'{ -webkit-animation:loader'+ w + ' '+ this.option.duration +' infinite linear;'+
+                        '-moz-animation:loader'+ w + ' '+ this.option.duration +' infinite linear;'+
+                        'animation:loader'+ w + ' '+ this.option.duration +' infinite linear;}';
+
+    document.getElementsByTagName('head')[0].appendChild(style)
+
+    this.colorBarElement.className = 'loader'+ w;
+
+}
+
+colorBar.prototype.loaded = function() {
+
+    this.colorBarElement.className = '';
+
+}
