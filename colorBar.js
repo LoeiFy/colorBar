@@ -76,11 +76,15 @@ colorBar.prototype.loading = function() {
     document.getElementsByTagName('head')[0].appendChild(style)
 
     this.colorBarElement.className = 'loader'+ w;
+    this.colorBarElement.style.display = 'block';
 
 }
 
-colorBar.prototype.loaded = function() {
+colorBar.prototype.loaded = function(mark) {
 
     this.colorBarElement.className = '';
+    if (!mark) {
+        this.colorBarElement.style.display = 'none'
+    }
 
 }
