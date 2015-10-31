@@ -22,10 +22,13 @@ function colorBar(selector, option) {
     }
 
     if (selector) {
+
         var element = document.querySelector(selector);
         while (element.firstChild) {
             element.removeChild(element.firstChild)
         }
+
+        this.selector = element;
 
         this.colorBarElement = document.createElement('div');
         this.colorBarElement.id = this.option.id;
@@ -50,8 +53,15 @@ colorBar.prototype.loading = function() {
         document.getElementsByTagName('head')[0].removeChild(oldStyle)
     }
 
+    function getWidth(element) {
+        var style = window.getComputedStyle(element),
+            padding = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
+
+        return element.clientWidth - padding
+    } 
+
     var style = document.createElement('style'),
-        w = window.innerWidth;
+        w = getWidth(this.selector);
 
     style.id = 'colorBarStyle';
     style.innerHTML = 
