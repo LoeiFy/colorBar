@@ -10,33 +10,14 @@
 body {
     margin: 0;
 }
-@-webkit-keyframes loader {
-    100% { background-position: 1377px 0 }
-}
-@-webkit-keyframes loader2 {
-    100% { background-position: 100% 0 }
-}
-.loader {
-    height: 4px;
-    background-image: -webkit-linear-gradient(180deg, #37cca2 0%, #46deb6 17%, #feed00 38%, #fbf27a 59%, #f24141 79%, #37cca2 100%);
-    background-image: -moz-linear-gradient(right, #37cca2 0%, #46deb6 17%, #feed00 38%, #fbf27a 59%, #f24141 79%, #37cca2 100%);
-    background-image: linear-gradient(to left, #37cca2 0%, #46deb6 17%, #feed00 38%, #fbf27a 59%, #f24141 79%, #37cca2 100%);
-}
-.loader.load0 {
-    -webkit-animation: loader 3s infinite linear;
-}
-.loader.load1 {
-    -webkit-animation: loader2 3s infinite linear;
-}
 </style>
-<script src="colorBar.js"></script>
 </head>
 
 <body>
-<div class="loader load"></div>
-<br />
+
 <div style="padding: 0 10px" class="test"></div>
 
+<script src="colorBar.js"></script>
 <script>
 var b = new colorBar('.test')
 </script>
