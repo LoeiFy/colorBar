@@ -12,7 +12,14 @@ function colorBar(selector, option) {
         id: 'colorBar',
         height: '3px',
         duration: '2s',
-        colors: ['#37cca2', '#46deb6', '#feed00', '#fbf27a', '#f24141', '#37cca2']
+        colors: [
+            ['#37cca2', '0%'], 
+            ['#46deb6', '17%'], 
+            ['#feed00', '38%'], 
+            ['#fbf27a', '59%'], 
+            ['#f24141', '79%'], 
+            ['#37cca2', '100%']
+        ]
     }
 
     if (option && typeof option === 'object') {
@@ -33,7 +40,11 @@ function colorBar(selector, option) {
         this.colorBarElement = document.createElement('div');
         this.colorBarElement.id = this.option.id;
 
-        var cssStyle = this.option.colors[0] +' 0%,'+ this.option.colors[1] +' 17%,'+ this.option.colors[2] +' 38%,'+ this.option.colors[3] +' 59%,'+ this.option.colors[4] +' 79%,'+ this.option.colors[5] +' 100%';
+        var cssStyle = '';
+        for (var i = 0; i < this.option.colors.length; i ++) {
+            cssStyle += this.option.colors[i][0] +' '+ this.option.colors[i][1] +','
+        }
+        cssStyle = cssStyle.substr(0, cssStyle.length - 1)
 
         this.colorBarElement.style.cssText = 
             'height:'+ this.option.height +';'+
@@ -48,7 +59,7 @@ function colorBar(selector, option) {
 
 colorBar.prototype.loading = function() {
 
-    var oldStyle = document.getElementById('colorBarStyle');
+    var oldStyle = document.getElementById('colorBar'+ this.option.id);
     if (oldStyle) {
         document.getElementsByTagName('head')[0].removeChild(oldStyle)
     }
@@ -61,21 +72,22 @@ colorBar.prototype.loading = function() {
     } 
 
     var style = document.createElement('style'),
-        w = getWidth(this.selector);
+        w = getWidth(this.selector),
+        styleTag = 'loader'+ this.option.id + w;
 
-    style.id = 'colorBarStyle';
+    style.id = 'colorBar'+ this.option.id;
     style.innerHTML = 
-        '@-webkit-keyframes loader'+ w +'{ 100% { background-position:'+ w +'px 0 } }'+
-        '@-moz-keyframes loader'+ w +'{ 100% { background-position:'+ w +'px 0 } }'+
-        '@keyframes loader'+ w +'{ 100% { background-position:'+ w +'px 0 } }'+
+        '@-webkit-keyframes '+ styleTag +'{ 100% { background-position:'+ w +'px 0 } }'+
+        '@-moz-keyframes '+ styleTag +'{ 100% { background-position:'+ w +'px 0 } }'+
+        '@keyframes '+ styleTag +'{ 100% { background-position:'+ w +'px 0 } }'+
 
-        '.loader'+ w +'{ -webkit-animation:loader'+ w + ' '+ this.option.duration +' infinite linear;'+
-                        '-moz-animation:loader'+ w + ' '+ this.option.duration +' infinite linear;'+
-                        'animation:loader'+ w + ' '+ this.option.duration +' infinite linear;}';
+        '.'+ styleTag +'{ -webkit-animation:'+ styleTag + ' '+ this.option.duration +' infinite linear;'+
+                        '-moz-animation:'+ styleTag + ' '+ this.option.duration +' infinite linear;'+
+                        'animation:'+ styleTag + ' '+ this.option.duration +' infinite linear;}';
 
     document.getElementsByTagName('head')[0].appendChild(style)
 
-    this.colorBarElement.className = 'loader'+ w;
+    this.colorBarElement.className = styleTag;
     this.colorBarElement.style.display = 'block';
 
 }
@@ -86,5 +98,14 @@ colorBar.prototype.loaded = function(mark) {
     if (!mark) {
         this.colorBarElement.style.display = 'none'
     }
+
+}
+
+colorBar.prototype.status = function() {
+
+    if (this.colorBarElement.className === '') {
+        return 'loaded'
+    }
+    return 'loading'
 
 }
