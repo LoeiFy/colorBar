@@ -104,7 +104,7 @@ colorBar.prototype.loaded = function(mark) {
 colorBar.prototype.status = function() {
 
     if (this.colorBarElement.className === '') {
-        return 'loaded'
+        return 'normal'
     }
     return 'loading'
 

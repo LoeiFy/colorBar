@@ -12,7 +12,14 @@ var option = {
 	id: 'colorBar',
 	height: '3px',
 	duration: '2s',
-	colors: ['#37cca2', '#46deb6', '#feed00', '#fbf27a', '#f24141', '#37cca2']
+	colors: [
+        ['#37cca2', '0%'], 
+        ['#46deb6', '17%'], 
+        ['#feed00', '38%'], 
+        ['#fbf27a', '59%'], 
+        ['#f24141', '79%'], 
+        ['#37cca2', '100%']
+    ]
 }
 
 // init
@@ -22,8 +29,11 @@ var bar = new colorBar('.bar', option);
 bar.loading()
 
 // loaded
-bar.loaded()
-bar.loaded(0)	// remove colorBar
+bar.loaded()		// hide colorBar
+bar.loaded(true)	// show colorBar
+
+// get status
+var s = bar.status()		// s = 'loading' or s = 'normal'
 ```
 
 ## For develop
