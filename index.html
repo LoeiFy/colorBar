@@ -132,6 +132,22 @@ var bar1 = new colorBar('.bar1', {
 <div id="a2" class="dib">.loading()</div>
 <div id="a3" class="dib">.loaded()</div>
 </div>
+
+<h3>For Responsive Example</h3>
+<pre>
+var bar2 = new colorBar('.bar2');
+
+var T;
+window.onresize = function() {
+    clearTimeout(T)
+    T = setTimeout(function() {
+        if (bar2.status() == 'loading') {
+            bar2.loading()
+        }
+    }, 500)
+}
+</pre>
+
 </div>
 
 <script src="colorBar.js"></script>
