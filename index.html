@@ -9,17 +9,169 @@
 <style>
 body {
     margin: 0;
+    text-align: center;
+    background: #f8f8f8;
+}
+.dib {
+    display: inline-block;
+    color: #333;
+    background: #fff;
+    border-radius: 3px;
+    border: 1px solid #DEDEDE;
+    font-size: 16px;
+    padding: 10px 16px;
+    margin: 10px 20px 10px 0;
+    cursor: pointer;
+}
+h1 {
+    color: #a71d5d;
+    margin: 70px 0 0;
+    font-size: 50px;
+}
+p {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+h2 {
+    font-size: 24px;
+    color: #666;
+    font-weight: normal;
+    margin: 50px auto 10px;
+}
+.mod {
+    width: 70%;
+    margin: 30px auto 0;
+    padding-bottom: 70px;
+    text-align: left;
+}
+pre {
+    background: #ececec;
+    color: #5D5D5D;
+    font-size: 14px;
+    padding: 10px;
+}
+h3 {
+    color: #666;
+    font-size: 20px;
+    margin: 10px 0;
+    font-weight: normal;
+}
+.center {
+    text-align: center;
+    margin: 20px 0 30px;
 }
 </style>
 </head>
 
 <body>
 
-<div style="padding: 0 10px" class="test"></div>
+<a href="https://github.com/LoeiFy/colorBar/" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png"></a>
+
+<div class="bar"></div>
+
+<h1>colorBar</h1>
+<p>colorfull ajax loading bar</p>
+
+<h2>Example</h2>
+<div id="b0" class="dib">.loading()</div>
+<div id="b1" class="dib">.loaded()</div>
+<div id="b2" class="dib">.loaded(false)</div>
+
+<h2>More Example</h2>
+
+<div class="mod">
+
+<h3>Rainbow colorBar</h3>
+<pre>
+var Rainbow = [
+    ['#ff0000', '0%'], 
+    ['#ffa500', '14%'], 
+    ['#ffff00', '29%'], 
+    ['#00ff00', '43%'], 
+    ['#007fff', '57%'], 
+    ['#0000ff', '72%'], 
+    ['#8b00ff', '86%'], 
+    ['#ff0000', '100%']
+]
+var bar0 = new colorBar('.bar0', {
+    id: 'bar0',
+    height: '5px',
+    colors: Rainbow
+})
+</pre>
+
+<div class="bar0"></div>
+
+<div class="center">
+<div id="a0" class="dib">.loading()</div>
+<div id="a1" class="dib">.loaded()</div>
+</div>
+
+<h3>Four colors</h3>
+<pre>
+var color = [
+    ['#f16f5c', '0%'], 
+    ['#f16f5c', '25%'], 
+    ['#5b56dd', '25%'], 
+    ['#5b56dd', '50%'], 
+    ['#e15ced', '50%'], 
+    ['#e15ced', '75%'], 
+    ['#27E559', '75%'], 
+    ['#27E559', '100%']
+]
+var bar1 = new colorBar('.bar1', {
+    id: 'bar1',
+    height: '10px',
+    colors: color
+})
+</pre>
+<div class="bar1"></div>
+
+<div class="center">
+<div id="a2" class="dib">.loading()</div>
+<div id="a3" class="dib">.loaded()</div>
+</div>
+</div>
 
 <script src="colorBar.js"></script>
 <script>
-var b = new colorBar('.test')
+var color0 = [
+    ['#ff0000', '0%'], 
+    ['#ffa500', '14%'], 
+    ['#ffff00', '29%'], 
+    ['#00ff00', '43%'], 
+    ['#007fff', '57%'], 
+    ['#0000ff', '72%'], 
+    ['#8b00ff', '86%'], 
+    ['#ff0000', '100%']
+];
+
+var color1 = [
+    ['#f16f5c', '0%'], 
+    ['#f16f5c', '25%'], 
+    ['#5b56dd', '25%'], 
+    ['#5b56dd', '50%'], 
+    ['#e15ced', '50%'], 
+    ['#e15ced', '75%'], 
+    ['#27E559', '75%'], 
+    ['#27E559', '100%']
+];
+document.addEventListener('DOMContentLoaded', function() { 
+    var bar = new colorBar('.bar', {
+        id: 'bar'
+    })
+    var bar0 = new colorBar('.bar0', {
+        id: 'bar0',
+        height: '5px',
+        colors: color0
+    })
+    var bar1 = new colorBar('.bar1', {
+        id: 'bar1',
+        height: '10px',
+        colors: color1
+    })
+})
 </script>
 </body>
 </html>

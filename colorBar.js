@@ -29,30 +29,32 @@ function colorBar(selector, option) {
     }
 
     if (selector) {
-
         var element = document.querySelector(selector);
-        while (element.firstChild) {
-            element.removeChild(element.firstChild)
+
+        if (element) {
+            while (element.firstChild) {
+                element.removeChild(element.firstChild)
+            }
+
+            this.selector = element;
+
+            this.colorBarElement = document.createElement('div');
+            this.colorBarElement.id = this.option.id;
+
+            var cssStyle = '';
+            for (var i = 0; i < this.option.colors.length; i ++) {
+                cssStyle += this.option.colors[i][0] +' '+ this.option.colors[i][1] +','
+            }
+            cssStyle = cssStyle.substr(0, cssStyle.length - 1)
+
+            this.colorBarElement.style.cssText = 
+                'height:'+ this.option.height +';'+
+                'background-image:-webkit-linear-gradient(left, '+ cssStyle +');'+
+                'background-image:-moz-linear-gradient(left, '+ cssStyle +');'+
+                'background-image:linear-gradient(to right, '+ cssStyle +');';
+
+            element.appendChild(this.colorBarElement)
         }
-
-        this.selector = element;
-
-        this.colorBarElement = document.createElement('div');
-        this.colorBarElement.id = this.option.id;
-
-        var cssStyle = '';
-        for (var i = 0; i < this.option.colors.length; i ++) {
-            cssStyle += this.option.colors[i][0] +' '+ this.option.colors[i][1] +','
-        }
-        cssStyle = cssStyle.substr(0, cssStyle.length - 1)
-
-        this.colorBarElement.style.cssText = 
-            'height:'+ this.option.height +';'+
-            'background-image:-webkit-linear-gradient(left, '+ cssStyle +');'+
-            'background-image:-moz-linear-gradient(left, '+ cssStyle +');'+
-            'background-image:linear-gradient(to right, '+ cssStyle +');';
-
-        element.appendChild(this.colorBarElement)
     }
 
 }
