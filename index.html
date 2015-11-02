@@ -75,8 +75,8 @@ h3 {
 
 <h2>Example</h2>
 <div id="b0" class="dib">.loading()</div>
-<div id="b1" class="dib">.loaded()</div>
-<div id="b2" class="dib">.loaded(false)</div>
+<div id="b1" class="dib">.loaded(true)</div>
+<div id="b2" class="dib">.loaded()</div>
 
 <h2>More Example</h2>
 
@@ -187,6 +187,23 @@ document.addEventListener('DOMContentLoaded', function() {
         height: '10px',
         colors: color1
     })
+
+    function click(tag, callback) {
+        document.getElementById(tag).addEventListener('click', function() {
+            callback()
+        }, false)
+    }
+
+    click('b0', function() { bar.loading() })
+    click('b1', function() { bar.loaded(true) })
+    click('b2', function() { bar.loaded() })
+
+    click('a0', function() { bar0.loading() })
+    click('a1', function() { bar0.loaded(true) })
+
+    click('a2', function() { bar1.loading() })
+    click('a3', function() { bar1.loaded(true) })
+
 })
 </script>
 </body>
