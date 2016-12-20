@@ -1,13 +1,6 @@
-/*
- * https://github.com/LoeiFy/colorBar/
- *
- * @version 0.1.0
- * @author LoeiFy@gmail.com
- * http://lorem.in/ | under MIT license
- */
+;(function() {
 
-function colorBar(selector, option) {
-
+    function colorBar(option) {
     this.option = {
         id: 'colorBar',
         height: '3px',
@@ -103,11 +96,10 @@ colorBar.prototype.loaded = function(mark) {
 
 }
 
-colorBar.prototype.status = function() {
-
-    if (this.colorBarElement.className === '') {
-        return 'normal'
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = colorBar
+    } else {
+        window['colorBar'] = colorBar
     }
-    return 'loading'
 
-}
+}())

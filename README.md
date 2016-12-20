@@ -7,8 +7,6 @@ http://loeify.github.io/colorBar
 ## Example Here
 http://guo.lu
 
-http://stone.am0200.com/
-
 ## How to use
 
 ```js

@@ -1,10 +1,11 @@
 {
-  "name": "colorBar",
-  "version": "0.0.0",
-  "description": "colorfull ajax loading bar",
-  "main": " ",
+  "name": "colorbar",
+  "version": "0.1.0",
+  "description": "colorfully ajax loading bar",
+  "main": "./colorBar.js",
   "scripts": {
-    "test": " "
+    "start": "http-server -p 1234",
+    "build": "babel ./colorBar.js --presets=latest | uglifyjs - --compress --mangle --output ./colorBar.min.js"
   },
   "repository": {
     "type": "git",
@@ -14,17 +15,18 @@
     "ajax",
     "loading",
     "bar",
-    "colorfull"
+    "colorfully"
   ],
-  "author": "Loeify",
+  "author": "LoeiFy@gmail.com",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/LoeiFy/colorBar/issues"
   },
   "homepage": "https://github.com/LoeiFy/colorBar",
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-connect": "^2.2.0",
-    "gulp-jshint": "^1.11.2"
+    "babel-cli": "^6.18.0",
+    "babel-preset-latest": "^6.16.0",
+    "http-server": "^0.9.0",
+    "uglify-js": "^2.7.5"
   }
 }
