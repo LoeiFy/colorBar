@@ -1,100 +1,84 @@
 ;(function() {
 
     function colorBar(option) {
-    this.option = {
-        id: 'colorBar',
-        height: '3px',
-        duration: '2s',
-        colors: [
-            ['#37cca2', '0%'], 
-            ['#46deb6', '17%'], 
-            ['#feed00', '38%'], 
-            ['#fbf27a', '59%'], 
-            ['#f24141', '79%'], 
-            ['#37cca2', '100%']
-        ]
-    }
-
-    if (option && typeof option === 'object') {
-        for (var key in option) {
-            this.option[key] = option[key]
+        this.option = {
+            selector: 'colorBar',
+            height: '3px',
+            duration: '2s',
+            colors: [
+                ['#37cca2', '0%'], 
+                ['#46deb6', '17%'], 
+                ['#feed00', '38%'], 
+                ['#fbf27a', '59%'], 
+                ['#f24141', '79%'], 
+                ['#37cca2', '100%']
+            ]
         }
-    }
 
-    if (selector) {
-        var element = document.querySelector(selector);
-
-        if (element) {
-            while (element.firstChild) {
-                element.removeChild(element.firstChild)
+        if (option && typeof option === 'object') {
+            for (var key in option) {
+                this.option[key] = option[key]
             }
-
-            this.selector = element;
-
-            this.colorBarElement = document.createElement('div');
-            this.colorBarElement.id = this.option.id;
-
-            var cssStyle = '';
-            for (var i = 0; i < this.option.colors.length; i ++) {
-                cssStyle += this.option.colors[i][0] +' '+ this.option.colors[i][1] +','
-            }
-            cssStyle = cssStyle.substr(0, cssStyle.length - 1)
-
-            this.colorBarElement.style.cssText = 
-                'height:'+ this.option.height +';'+
-                'background-image:-webkit-linear-gradient(left, '+ cssStyle +');'+
-                'background-image:-moz-linear-gradient(left, '+ cssStyle +');'+
-                'background-image:linear-gradient(to right, '+ cssStyle +');';
-
-            element.appendChild(this.colorBarElement)
         }
+
+        this.element = document.getElementById(this.option.selector)
+        this.status = 'loaded'
+
+        if (!this.element) {
+            return console.error('cannot find the element')
+        }
+
+        var style = this.option.colors.map(function(color) {
+            return color[0] + ' ' + color[1]
+        }).join(',')
+
+        this.element.style.cssText = 
+            'height:' + this.option.height + ';' +
+            'background-image:-webkit-linear-gradient(left,' + style + ');' +
+            'background-image:-moz-linear-gradient(left,' + style + ');' +
+            'background-image:linear-gradient(to right,' + style + ');'
     }
 
-}
+    colorBar.prototype.loading = function() {
+        var styleId = this.option.selector + '-style'
+        var elementWidth = this.element.clientWidth
+        var styleClass = this.option.selector + '-' + elementWidth
+        var oldStyle = document.getElementById(styleId)
+        var newStyle = document.createElement('style')
+        var stylePosition = styleClass + ' { 100% { background-position-x: ' + elementWidth + 'px } }'
+        var styleAnimation = styleClass + ' ' + this.option.duration + ' infinite linear;'
 
-colorBar.prototype.loading = function() {
+        newStyle.id = styleId 
+        newStyle.innerHTML = 
+            '@-webkit-keyframes ' + stylePosition +
+            '@-moz-keyframes ' + stylePosition +
+            '@keyframes '+ stylePosition +
 
-    var oldStyle = document.getElementById('colorBar'+ this.option.id);
-    if (oldStyle) {
-        document.getElementsByTagName('head')[0].removeChild(oldStyle)
+            '.' + styleClass +' { ' +
+            '-webkit-animation: '+ styleAnimation +
+            '-moz-animation: '+ styleAnimation +
+            'animation: ' + styleAnimation + ' }'
+
+        if (oldStyle) {
+            document.head.removeChild(oldStyle)
+        }
+        document.head.appendChild(newStyle)
+
+        this.element.className = styleTag
+        this.element.style.display = 'block'
+        this.status = 'loading'
     }
 
-    function getWidth(element) {
-        var style = window.getComputedStyle(element),
-            padding = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
-
-        return element.clientWidth - padding
-    } 
-
-    var style = document.createElement('style'),
-        w = getWidth(this.selector),
-        styleTag = 'loader'+ this.option.id + w;
-
-    style.id = 'colorBar'+ this.option.id;
-    style.innerHTML = 
-        '@-webkit-keyframes '+ styleTag +'{ 100% { background-position:'+ w +'px 0 } }'+
-        '@-moz-keyframes '+ styleTag +'{ 100% { background-position:'+ w +'px 0 } }'+
-        '@keyframes '+ styleTag +'{ 100% { background-position:'+ w +'px 0 } }'+
-
-        '.'+ styleTag +'{ -webkit-animation:'+ styleTag + ' '+ this.option.duration +' infinite linear;'+
-                        '-moz-animation:'+ styleTag + ' '+ this.option.duration +' infinite linear;'+
-                        'animation:'+ styleTag + ' '+ this.option.duration +' infinite linear;}';
-
-    document.getElementsByTagName('head')[0].appendChild(style)
-
-    this.colorBarElement.className = styleTag;
-    this.colorBarElement.style.display = 'block';
-
-}
-
-colorBar.prototype.loaded = function(mark) {
-
-    this.colorBarElement.className = '';
-    if (!mark) {
-        this.colorBarElement.style.display = 'none'
+    colorBar.prototype.loaded = function() {
+        this.element.className = ''
+        this.status = 'loaded'
     }
 
-}
+    colorBar.prototype.hide = function() {
+        this.element.className = ''
+        this.element.style.display = 'none'
+        this.status = 'loaded'
+    }
 
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = colorBar
