@@ -1,6 +1,28 @@
 ;(function() {
 
+    function debounce(func, wait, immediate) {
+        var timeout
+        return function() {
+            var context = this
+            var args = arguments
+            var later = function() {
+                timeout = null
+                if (!immediate) {
+                    func.apply(context, args)
+                }
+            }
+            var callNow = immediate && !timeout
+            clearTimeout(timeout)
+            timeout = setTimeout(later, wait)
+            if (callNow) {
+                func.apply(context, args)
+            }
+        }
+    }
+
     function colorBar(option) {
+        var _this = this
+
         this.option = {
             selector: 'colorBar',
             height: '3px',
@@ -37,9 +59,21 @@
             'background-image:-webkit-linear-gradient(left,' + style + ');' +
             'background-image:-moz-linear-gradient(left,' + style + ');' +
             'background-image:linear-gradient(to right,' + style + ');'
+
+        window.addEventListener('resize', debounce(function() { 
+            _this.resize() 
+        }, 250))
+    }
+
+    colorBar.prototype.resize = function() {
+        if (this.status === 'loading') {
+            this.loading()
+        }
     }
 
     colorBar.prototype.loading = function() {
+        this.element.style.display = 'block'
+
         var styleId = this.option.selector + '-style'
         var elementWidth = this.element.clientWidth
         var styleClass = this.option.selector + '-' + elementWidth
@@ -64,8 +98,7 @@
         }
         document.head.appendChild(newStyle)
 
-        this.element.className = styleTag
-        this.element.style.display = 'block'
+        this.element.className = styleClass
         this.status = 'loading'
     }
 

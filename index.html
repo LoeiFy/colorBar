@@ -101,7 +101,7 @@ var bar0 = new colorBar('.bar0', {
 })
 </pre>
 
-<div class="bar0"></div>
+<div id="bar0" class="bar0"></div>
 
 <div class="center">
 <div id="a0" class="dib">.loading()</div>
@@ -174,11 +174,11 @@ var color1 = [
     ['#27E559', '100%']
 ];
 document.addEventListener('DOMContentLoaded', function() { 
-    new colorBar()
-    /*
-    var bar = new colorBar('.bar', {
-        id: 'bar'
+    var bar = new colorBar()
+    var bar1 = new colorBar({
+        selector: 'bar0'
     })
+    /*
     var bar0 = new colorBar('.bar0', {
         id: 'bar0',
         height: '5px',
@@ -198,8 +198,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     click('b0', function() { bar.loading() })
-    click('b1', function() { bar.loaded(true) })
-    click('b2', function() { bar.loaded() })
+    click('b1', function() { bar.loaded() })
+    click('b2', function() { bar.hide() })
 
     click('a0', function() { bar0.loading() })
     click('a1', function() { bar0.loaded(true) })
