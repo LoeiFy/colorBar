@@ -1,18 +1,40 @@
 # colorBar
-colorfull ajax loading bar
-
-## Demo
+colorfully loading bar 
 http://loeify.github.io/colorBar
 
-## Example Here
-http://guo.lu
+## Installation
 
-## How to use
+```bash
+npm i -S colorbar
+```
+
+## Usage
+
+html markup
+
+```html
+<div id="bar"></div>
+```
+
+use as module
 
 ```js
-// optional (default value)
-var option = {
-	id: 'colorBar',
+import colorBar from 'colorbar'
+//var colorBar = require('colorbar')
+``` 
+
+or use the script
+
+```html
+<script src="colorBar.min.js"></script>
+```
+
+### Options
+
+```js
+// default
+new colorBar({
+	selector: 'colorBar',  // html id only
 	height: '3px',
 	duration: '2s',
 	colors: [
@@ -23,28 +45,35 @@ var option = {
         ['#f24141', '79%'], 
         ['#37cca2', '100%']
     ]
-}
+})
+```
 
-// init
-var bar = new colorBar('.bar', option);
+### API
+
+```js
+const bar = new colorBar({
+    selector: 'bar'
+})
 
 // loading
 bar.loading()
 
 // loaded
-bar.loaded()		// hide colorBar
-bar.loaded(true)	// show colorBar
+bar.loaded()
 
-// get status
-var s = bar.status()		// s = 'loading' or s = 'normal'
+// hide
+bar.hide()
 ```
 
-## For develop
+## Development
+
 ```bash
-$ npm i
-$ gulp
+# build 
+$ npm run build
+
+# local server
+$ npm start
 ```
-now access `http://127.0.0.1:2222` for development
 
 ## License
 MIT

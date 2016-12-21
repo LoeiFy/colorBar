@@ -6,66 +6,7 @@
 <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
 <title>colorBar</title>
 <meta name="author" content="LoeiFy">
-<style>
-body {
-    margin: 0;
-    text-align: center;
-    background: #fff;
-}
-.dib {
-    display: inline-block;
-    color: #333;
-    background: #f8f8f8;
-    border-radius: 3px;
-    border: 1px solid #e6e6e6;
-    font-size: 16px;
-    padding: 10px 16px;
-    margin: 10px 20px 10px 0;
-    cursor: pointer;
-}
-h1 {
-    color: #a71d5d;
-    margin: 70px 0 0;
-    font-size: 50px;
-}
-p {
-    margin: 0;
-    font-size: 16px;
-    color: #333;
-}
-h2 {
-    font-size: 24px;
-    color: #666;
-    font-weight: normal;
-    margin: 50px auto 10px;
-}
-.mod {
-    width: 70%;
-    margin: 30px auto 0;
-    padding-bottom: 70px;
-    text-align: left;
-}
-pre {
-    background: #f7f7f7;
-    border: 1px solid #eee;
-    color: #666;
-    border-radius: 3px;
-    font-size: 16px;
-    line-height: 1.6;
-    padding: 20px;
-    letter-spacing: .5px;
-}
-h3 {
-    color: #666;
-    font-size: 20px;
-    margin: 10px 0;
-    font-weight: normal;
-}
-.center {
-    text-align: center;
-    margin: 20px 0 30px;
-}
-</style>
+<link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
@@ -75,12 +16,13 @@ h3 {
 <div id="colorBar" class="bar"></div>
 
 <h1>colorBar</h1>
-<p>colorfully loading bar</p>
+<p style="margin-bottom: 30px;">colorfully loading bar</p>
 
-<h2>Example</h2>
 <div id="b0" class="dib">.loading()</div>
 <div id="b1" class="dib">.loaded()</div>
 <div id="b2" class="dib">.hide()</div>
+
+<a class="linkto" href="https://github.com/LoeiFy/colorBar#colorbar">Download and Documentation</a>
 
 <h2>More Example</h2>
 
@@ -98,7 +40,7 @@ var color = [
     ['#27E559', '100%']
 ]
 var bar = new colorBar({
-    id: 'bar',
+    selector: 'bar',
     height: '10px',
     colors: color
 })
@@ -109,6 +51,8 @@ var bar = new colorBar({
 <div class="center">
 <div id="a2" class="dib">.loading()</div>
 <div id="a3" class="dib">.loaded()</div>
+</div>
+
 </div>
 
 <script src="./colorBar.js"></script>
