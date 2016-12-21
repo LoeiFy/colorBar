@@ -5,7 +5,7 @@
   "main": "./colorBar.js",
   "scripts": {
     "start": "http-server -p 1234",
-    "build": "uglifyjs - --compress --mangle --output ./colorBar.min.js"
+    "build": "uglifyjs ./colorBar.js -m -o ./colorBar.min.js"
   },
   "repository": {
     "type": "git",

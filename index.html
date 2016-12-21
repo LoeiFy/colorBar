@@ -10,14 +10,14 @@
 body {
     margin: 0;
     text-align: center;
-    background: #f8f8f8;
+    background: #fff;
 }
 .dib {
     display: inline-block;
     color: #333;
-    background: #fff;
+    background: #f8f8f8;
     border-radius: 3px;
-    border: 1px solid #DEDEDE;
+    border: 1px solid #e6e6e6;
     font-size: 16px;
     padding: 10px 16px;
     margin: 10px 20px 10px 0;
@@ -46,10 +46,14 @@ h2 {
     text-align: left;
 }
 pre {
-    background: #ececec;
-    color: #5D5D5D;
-    font-size: 14px;
-    padding: 10px;
+    background: #f7f7f7;
+    border: 1px solid #eee;
+    color: #666;
+    border-radius: 3px;
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 20px;
+    letter-spacing: .5px;
 }
 h3 {
     color: #666;
@@ -71,44 +75,17 @@ h3 {
 <div id="colorBar" class="bar"></div>
 
 <h1>colorBar</h1>
-<p>colorfull ajax loading bar</p>
+<p>colorfully loading bar</p>
 
 <h2>Example</h2>
 <div id="b0" class="dib">.loading()</div>
-<div id="b1" class="dib">.loaded(true)</div>
-<div id="b2" class="dib">.loaded()</div>
+<div id="b1" class="dib">.loaded()</div>
+<div id="b2" class="dib">.hide()</div>
 
 <h2>More Example</h2>
 
 <div class="mod">
 
-<h3>Rainbow colorBar</h3>
-<pre>
-var Rainbow = [
-    ['#ff0000', '0%'], 
-    ['#ffa500', '14%'], 
-    ['#ffff00', '29%'], 
-    ['#00ff00', '43%'], 
-    ['#007fff', '57%'], 
-    ['#0000ff', '72%'], 
-    ['#8b00ff', '86%'], 
-    ['#ff0000', '100%']
-]
-var bar0 = new colorBar('.bar0', {
-    id: 'bar0',
-    height: '5px',
-    colors: Rainbow
-})
-</pre>
-
-<div id="bar0" class="bar0"></div>
-
-<div class="center">
-<div id="a0" class="dib">.loading()</div>
-<div id="a1" class="dib">.loaded()</div>
-</div>
-
-<h3>Four colors</h3>
 <pre>
 var color = [
     ['#f16f5c', '0%'], 
@@ -120,50 +97,23 @@ var color = [
     ['#27E559', '75%'], 
     ['#27E559', '100%']
 ]
-var bar1 = new colorBar('.bar1', {
-    id: 'bar1',
+var bar = new colorBar({
+    id: 'bar',
     height: '10px',
     colors: color
 })
 </pre>
-<div class="bar1"></div>
+
+<div id="bar" class="bar"></div>
 
 <div class="center">
 <div id="a2" class="dib">.loading()</div>
 <div id="a3" class="dib">.loaded()</div>
 </div>
 
-<h3>For Responsive Example</h3>
-<pre>
-var bar2 = new colorBar('.bar2');
-
-var T;
-window.onresize = function() {
-    clearTimeout(T)
-    T = setTimeout(function() {
-        if (bar2.status() == 'loading') {
-            bar2.loading()
-        }
-    }, 500)
-}
-</pre>
-
-</div>
-
-<script src="colorBar.js"></script>
+<script src="./colorBar.js"></script>
 <script>
-var color0 = [
-    ['#ff0000', '0%'], 
-    ['#ffa500', '14%'], 
-    ['#ffff00', '29%'], 
-    ['#00ff00', '43%'], 
-    ['#007fff', '57%'], 
-    ['#0000ff', '72%'], 
-    ['#8b00ff', '86%'], 
-    ['#ff0000', '100%']
-];
-
-var color1 = [
+var color = [
     ['#f16f5c', '0%'], 
     ['#f16f5c', '25%'], 
     ['#5b56dd', '25%'], 
@@ -176,20 +126,10 @@ var color1 = [
 document.addEventListener('DOMContentLoaded', function() { 
     var bar = new colorBar()
     var bar1 = new colorBar({
-        selector: 'bar0'
-    })
-    /*
-    var bar0 = new colorBar('.bar0', {
-        id: 'bar0',
-        height: '5px',
-        colors: color0
-    })
-    var bar1 = new colorBar('.bar1', {
-        id: 'bar1',
+        selector: 'bar',
         height: '10px',
-        colors: color1
+        colors: color
     })
-    */
 
     function click(tag, callback) {
         document.getElementById(tag).addEventListener('click', function() {
@@ -201,11 +141,8 @@ document.addEventListener('DOMContentLoaded', function() {
     click('b1', function() { bar.loaded() })
     click('b2', function() { bar.hide() })
 
-    click('a0', function() { bar0.loading() })
-    click('a1', function() { bar0.loaded(true) })
-
     click('a2', function() { bar1.loading() })
-    click('a3', function() { bar1.loaded(true) })
+    click('a3', function() { bar1.loaded() })
 
 })
 </script>
