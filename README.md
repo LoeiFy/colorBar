@@ -71,7 +71,7 @@ bar.hide()
 # build 
 $ npm run build
 
-# local server
+# local server http://127.0.0.1:1234
 $ npm start
 ```
 

@@ -2,11 +2,14 @@
   "name": "colorbar",
   "version": "0.1.0",
   "description": "colorfully ajax loading bar",
-  "main": "./colorBar.js",
+  "main": "colorBar.js",
   "scripts": {
     "start": "http-server -p 1234",
     "build": "uglifyjs ./colorBar.js -m -o ./colorBar.min.js"
   },
+  "files": [
+    "colorBar.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/LoeiFy/colorBar.git"
