@@ -1,7 +1,7 @@
 {
-  "name": "colorbar",
-  "version": "0.1.0",
-  "description": "colorfully ajax loading bar",
+  "name": "colourbar",
+  "version": "0.1.1",
+  "description": "colorfully loading bar",
   "main": "colorBar.js",
   "scripts": {
     "start": "http-server -p 1234",

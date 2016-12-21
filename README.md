@@ -5,7 +5,7 @@ http://loeify.github.io/colorBar
 ## Installation
 
 ```bash
-npm i -S colorbar
+npm i -S colourbar
 ```
 
 ## Usage
@@ -19,8 +19,8 @@ html markup
 use as module
 
 ```js
-import colorBar from 'colorbar'
-//var colorBar = require('colorbar')
+import colorBar from 'colourbar'
+//var colorBar = require('colourbar')
 ``` 
 
 or use the script
@@ -38,6 +38,7 @@ new colorBar({
 	height: '3px',
 	duration: '2s',
 	colors: [
+        // ['color', 'position']
         ['#37cca2', '0%'], 
         ['#46deb6', '17%'], 
         ['#feed00', '38%'], 
